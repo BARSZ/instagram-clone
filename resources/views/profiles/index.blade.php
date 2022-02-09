@@ -7,9 +7,12 @@
             <img src="/img/tuco.jpg" class="rounded-circle">
         </div>
         <div class="col-9 pt-5">
-            <div><h1>{{ $user->username }}</h1></div>
+            <div class="d-flex justify-content-between align-items-baseline">
+                <h1>{{ $user->username }}</h1>
+                <a href="/p/create">Add New Post</a>
+            </div>
             <div class="d-flex">
-                <div class="pe-3"><strong>999</strong> posts</div>
+                <div class="pe-3"><strong>{{ $user->posts->count() }}</strong> posts</div>
                 <div class="pe-3"><strong>999</strong> followers</div>
                 <div class="pe-3"><strong>999</strong> following</div>
             </div>
@@ -19,15 +22,11 @@
         </div>
     </div>
     <div class="row pt-5">
-        <div class="col-4">
-            <img src="/img/bmw_e39.jpg" class="w-100">
+        @foreach ($user->posts as $post)
+        <div class="col-4 pb-5">
+            <img src="/storage/{{ $post->image }}" class="w-100">
         </div>
-        <div class="col-4">
-            <img src="/img/bmw_e39.jpg" class="w-100">
-        </div>
-        <div class="col-4">
-            <img src="/img/bmw_e39.jpg" class="w-100">
-        </div>
+        @endforeach
     </div>
 </div>
 @endsection
